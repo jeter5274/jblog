@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<!-- id값으로 유저정보 1개 가져오기 : 중복체크 (selectById) / 블로그 정보 불러오기 -->
+	<select id="selectById" parameterType="String" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select  us.userNo,
+        			us.id,
+        			us.userName,
+        			us.joinDate,
+        			bl.blogTitle,
+        			bl.logoFile
+			from users us, blog bl
+			where us.id = bl.id
+			and us.id = #{id}
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			insert into users
+			values(seq_user_no.nextval,
+				   #{id},
+				   #{userName},
+				   #{password},
+				   sysdate
+			)
+		]]>
+	</insert>
+	
+	<!-- 회원가입시 블로그 초기값 입력-->
+	<insert id="insertBlog" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			insert into blog
+			values(#{id},
+				   #{blogTitle},
+				   #{logoFile}
+			)
+		]]>
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="selectByIdNPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select  userNo,
+        			id
+			from users
+			where id = #{id}
+			and password = #{password}
+		]]>
+	</select>
+</mapper>

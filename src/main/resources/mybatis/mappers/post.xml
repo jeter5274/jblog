@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+
+	<!-- id값으로 유저정보 1개 가져오기 : 중복체크 (selectById) / 블로그 정보 불러오기 -->
+	<insert id="insertPost" parameterType="com.javaex.vo.PostVo">
+		<![CDATA[
+			insert into post
+			values(seq_post_no.nextval,
+				   #{cateNo},
+				   #{postTitle},
+				   #{postContent},
+				   sysdate
+			)
+		]]>
+	</insert>
+	
+</mapper>
