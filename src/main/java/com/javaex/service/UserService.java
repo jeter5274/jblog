@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.CategoryDao;
-import com.javaex.dao.PostDao;
 import com.javaex.dao.UserDao;
 import com.javaex.vo.CategoryVo;
-import com.javaex.vo.PostVo;
 import com.javaex.vo.UserVo;
 
 @Service
@@ -17,8 +15,6 @@ public class UserService {
 	private UserDao userDao;
 	@Autowired
 	private CategoryDao cateDao;
-	@Autowired
-	private PostDao postDao;
 	
 	//id 중복체크
 	public String idChk(String id) {
@@ -37,7 +33,7 @@ public class UserService {
 		return result;
 	}
 	
-	//회원가입 & 블로그 & 카테고리 & 포스트 초기값 입력
+	//회원가입 & 블로그 & 카테고리 초기값 입력
 	public int join(UserVo userVo) {
 		System.out.println("[UserService] join()");
 		
@@ -58,15 +54,7 @@ public class UserService {
 		cateVo.setId(userVo.getId());
 		cateVo.setPostCnt(1);
 		
-		cateDao.insertSelectKey(cateVo);
-		
-		//post 초기값 할당
-		PostVo postVo = new PostVo();
-		postVo.setCateNo(cateVo.getCateNo());
-		postVo.setPostTitle("등록된 글이 없습니다.");
-		postVo.setPostContent(" ");
-		
-		postDao.insertPost(postVo);
+		cateDao.insertCate(cateVo);
 		
 		return count;
 	}

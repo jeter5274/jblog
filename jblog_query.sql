@@ -196,7 +196,14 @@ select  cateNo,
         regDate
 from category;
 
-
+--계정의 카테고리 리스트 불러오기 (selectCateList)
+select  cateNo,
+        id,
+        cateName,
+        description,
+        regDate
+from category
+where id = 'admin';
 
 
 
@@ -215,6 +222,14 @@ select  postNo,
         regDate
 from post;
 
+--카테고리의 글정보 가져오기
+select  postNo,
+        cateNo,
+        postTitle,
+        postContent,
+        to_char(regDate, 'YYYY/MM/DD') regDate
+from post
+where cateNo = 1;
 
 
 

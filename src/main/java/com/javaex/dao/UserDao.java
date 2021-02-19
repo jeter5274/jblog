@@ -40,4 +40,11 @@ public class UserDao {
 		
 		return sqlSession.selectOne("user.selectByIdNPw", userVo);
 	}
+	
+	//블로그 메인 제목, 이미지 수정
+	public int updateBlog(UserVo userVo) {
+		System.out.println("[UserDao] updateBlog()");
+		
+		return sqlSession.update("user.updateBlog", userVo);
+	}
 }

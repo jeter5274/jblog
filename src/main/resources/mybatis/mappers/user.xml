@@ -52,4 +52,23 @@
 			and password = #{password}
 		]]>
 	</select>
+	
+	<!-- 블로그 제목, 이미지 수정 -->
+	<update id="updateBlog" parameterType="com.javaex.vo.UserVo" >
+		<![CDATA[
+			update blog
+			set blogtitle = #{blogTitle}
+		]]>	
+		
+		<if test="logoFile != null">
+			<![CDATA[
+										,
+    			logofile = #{logoFile}
+    		]]>
+ 		</if>
+ 		
+    	<![CDATA[
+			where id = #{id}
+		]]>
+	</update>
 </mapper>

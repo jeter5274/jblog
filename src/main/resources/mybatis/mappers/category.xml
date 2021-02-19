@@ -4,13 +4,10 @@
 <mapper namespace="category">
 
 	<!-- 카테고리 등록 -->
-	<insert id="insertSelectKey" parameterType="com.javaex.vo.CategoryVo">
-		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">	
-			select seq_category_no.nextval from dual
-		</selectKey>  
+	<insert id="insertCate" parameterType="com.javaex.vo.CategoryVo">
 		<![CDATA[
 			insert into category
-			values(#{cateNo},
+			values(seq_category_no.nextval,
 				   #{id},
 				   #{cateName},
 				   #{description},
@@ -18,5 +15,19 @@
 			)
 		]]>
 	</insert>
+	
+	<!-- 카테고리 리스트 불러오기 -->
+	<select id="selectCateList" parameterType="String" resultType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+			select  cateNo,
+        			id,
+        			cateName,
+        			description,
+        			regDate
+			from category
+			where id = #{id}
+			order by cateNo desc
+		]]>
+	</select>
 	
 </mapper>
