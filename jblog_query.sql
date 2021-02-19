@@ -179,6 +179,13 @@ select  id,
 from blog
 where id = 'admin';
 
+--수정
+update blog
+set blogtitle = '1',
+    logofile = '1'
+where id = 'admin';
+
+
 
 
 /*category table****************************************************************/
