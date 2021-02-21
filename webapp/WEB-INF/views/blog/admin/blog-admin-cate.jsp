@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>JBlog</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
 
@@ -15,13 +16,13 @@
 	<div id="wrap">
 		
 		<!-- 개인블로그 해더 -->
-
+		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
 
 		<div id="content">
 			<ul id="admin-menu" class="clearfix">
-				<li class="tabbtn selected"><a href="">기본설정</a></li>
-				<li class="tabbtn"><a href="">카테고리</a></li>
-				<li class="tabbtn"><a href="">글작성</a></li>
+				<li class="tabbtn"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">기본설정</a></li>
+				<li class="tabbtn selected"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/category">카테고리</a></li>
+				<li class="tabbtn"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/writeForm">글작성</a></li>
 			</ul>
 			<!-- //admin-menu -->
 			
@@ -45,26 +46,9 @@
 			      		</tr>
 		      		</thead>
 		      		<tbody id="cateList">
-		      			<!-- 리스트 영역 -->
-		      			<tr>
-							<td>1</td>
-							<td>자바프로그래밍</td>
-							<td>7</td>
-							<td>자바기초와 객체지향</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>오라클</td>
-							<td>5</td>
-							<td>오라클 설치와 sql문</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<!-- 리스트 영역 -->
+		      			<!-- 
+		      				리스트 영역 
+		      			-->
 					</tbody>
 				</table>
       	
@@ -94,14 +78,134 @@
 		
 		
 		<!-- 개인블로그 푸터 -->
+		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>
 		
-	
-	
 	</div>
 	<!-- //wrap -->
 </body>
 
+<script type="text/javascript">
 
+	//카테고리 리스트
+	$("document").ready(function(){
+		console.log("ready");
+
+		 $.ajax({
+			url : "${pageContext.request.contextPath }/api/blog/admin-cateList",
+			type : "post",
+			//contentType : "application/json",
+			data : {id : '${authUser.id}'},
+			
+			dataType : "json",
+			success : function(cateList) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(cateList);
+				for(var i=0; i<cateList.length; i++){
+					rander(cateList[i], "down");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); 
+		
+	});
+	
+	//카테고리 추가
+	$("#btnAddCate").on("click", function(){
+		
+		console.log("카테고리 추가 버튼 클릭");
+
+		var categoryVo= {
+			id: '${authUser.id}',
+			cateName: $("input[name='name']").val(),
+			description: $("input[name='desc']").val()
+		}
+		
+		console.log(categoryVo);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/api/blog/admin-addCate",
+			type : "post",
+			//contentType : "application/json",
+			data : categoryVo,
+			
+			dataType : "json",
+			success : function(categoryVo) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(categoryVo);
+				rander(categoryVo, "up");
+				
+				$("input[name='name']").val("");
+				$("input[name='desc']").val("");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); 
+	});
+	
+	//카테고리 삭제
+	$("#cateList").on("click", "img", function(){
+		console.log("카테고리 클릭");
+		var cateNo = $(this).data('cateno');
+		var postCnt = $(this).data('postcnt');
+		
+		console.log(cateNo);
+		console.log(postCnt);
+		
+		if(postCnt > 0){
+			console.log("포스트가 존재하여 삭제 불가");
+			
+			alert("삭제 할 수 없습니다.");
+			
+		}else{
+			console.log("삭제");
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath }/api/blog/admin-removeCate",
+				type : "post",
+				//contentType : "application/json",
+				data : {cateNo : cateNo},
+				
+				dataType : "text",
+				success : function(result) {
+					/*성공시 처리해야될 코드 작성*/
+					console.log(result);
+					console.log($("#cate"+cateNo));
+					
+					$("#cate"+cateNo).remove();
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			}); 
+		}
+		
+	});
+	
+	function rander(cateVo, updown) {
+		var str = "";
+		str += '<tr id="cate' +cateVo.cateNo+ '">';
+		str += '	<td>' +cateVo.cateNo+ '</td>';
+		str += '	<td>' +cateVo.cateName+ '</td>';
+		str += '	<td>' +cateVo.postCnt+ '</td>';
+		str += '	<td>' +cateVo.description+ '</td>';
+		str += '	<td class="text-center">';
+		str += '		<img class="btnCateDel" data-cateno="' +cateVo.cateNo+ '" data-postcnt="' +cateVo.postCnt+ '" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+		str += '	</td>';
+		str += '</tr>';    	
+		
+		if(updown == "up"){
+			$("#cateList").prepend(str);	
+		}else if(updown == "down"){
+			$("#cateList").append(str);	
+		}else{
+			console.log("updown 미지정")
+		}
+		
+	}
+</script>
 
 
 </html>

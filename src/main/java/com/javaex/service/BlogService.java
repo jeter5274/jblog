@@ -17,78 +17,124 @@ import com.javaex.dao.CategoryDao;
 import com.javaex.dao.PostDao;
 import com.javaex.dao.UserDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.PostVo;
 import com.javaex.vo.UserVo;
 
 @Service
 public class BlogService {
-	
+
 	@Autowired
 	private UserDao userDao;
 	@Autowired
 	private CategoryDao cateDao;
 	@Autowired
 	private PostDao postDao;
-	
-	//블로그에 필용한 정보를 불러옴
-	public Map<String, Object> getblog(String id) {
+
+	// 블로그 카테고리 및 글 정보 불러옴
+	public Map<String, Object> getblog(String id, PostVo postVo) {
 		System.out.println("[BlogService] getblog()");
-		
+
 		Map<String, Object> blogMap = new HashMap<String, Object>();
-		
-		//유저 정보 및 블로그 타이틀/이미지 가져오기
-		blogMap.put("userVo", getUser(id));
-		
-		//카테고리 리스트 가져오기
-		List<CategoryVo> cateList = cateDao.selectCateList(id);
+
+		// 카테고리 리스트 가져오기
+		List<CategoryVo> cateList = getCateList(id);
 		blogMap.put("cateList", cateList);
 
-		//포스트 리스트 가져오기
-		blogMap.put("postList", postDao.selectPostList(cateList.get(0).getCateNo()));
+		// 카테고리의 포스트 리스트 가져오기
+		int cateNo = postVo.getCateNo();
 		
+		if(cateNo == 0) {							// 카테고리를 선택하지 않은 경우 제일 마지막 카테고리(가장 늦게 생성한)의 번호를 가져옴
+			cateNo = cateList.get(0).getCateNo();
+		}
+		
+		List<PostVo> postList = postDao.selectPostList(cateNo);
+		blogMap.put("postList", postList);
+
+		if(postList.size() != 0) {	//글이 없지 않다면
+			// 포스트 가져오기
+			int postNo = postVo.getPostNo();
+			
+			if(postNo == 0) {							// 글을 선택하지 않은 경우 제일 마지막 글(가장 늦게 생성한)의 번호를 가져옴
+				postNo = postList.get(0).getPostNo();
+			}
+			
+			blogMap.put("postVo", postDao.selectPost(postNo));
+		}
+
 		return blogMap;
 	}
-	
-	//id로 유저 정보를 불러옴
+
+	// id로 유저 정보를 불러옴
 	public UserVo getUser(String id) {
 		System.out.println("[BlogService] getblog()");
-		
+
 		return userDao.selectById(id);
 	}
-	
-	//블로그 제목, 이미지 수정
+
+	// 블로그 제목, 이미지 수정 : 파일이 없는 경우
 	public int basicModify(UserVo userVo) {
 		System.out.println("[BlogService] basicModify()");
-		
+
 		return userDao.updateBlog(userVo);
 	}
-	
-	//파일이 있는 경우
+
+	// 블로그 제목, 이미지 수정 : 파일이 있는 경우
 	public int basicModify(UserVo userVo, MultipartFile file) {
 		System.out.println("[BlogService] basicModify(exist file)");
-		
-		//파일 정보 생성 및 서버에 업로드
-		String saveDir = "C:\\javaStudy\\upload\\jblog"; //파일 저장 위치
-		String orgName = file.getOriginalFilename();	//원본파일 이름
-		String exName = orgName.substring(orgName.lastIndexOf("."));	//확장자
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName; //서버 저장 파일이름
-		
-		String filePath = saveDir+ "\\" +saveName;
-		
+
+		// 파일 정보 생성 및 서버에 업로드
+		String saveDir = "C:\\javaStudy\\upload\\jblog"; // 파일 저장 위치
+		String orgName = file.getOriginalFilename(); // 원본파일 이름
+		String exName = orgName.substring(orgName.lastIndexOf(".")); // 확장자
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName; // 서버 저장 파일이름
+
+		String filePath = saveDir + "\\" + saveName;
+
 		try {
 			OutputStream out = new FileOutputStream(filePath);
 			BufferedOutputStream bos = new BufferedOutputStream(out);
-			
+
 			bos.write(file.getBytes());
 			bos.close();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		//파일 경로 업데이트
-		userVo.setLogoFile("/upload/" +saveName);		
-		
+		// 파일 경로 업데이트
+		userVo.setLogoFile("/upload/" + saveName);
+
 		return basicModify(userVo);
+	}
+
+	// 카테고리 리스트 가져오기
+	public List<CategoryVo> getCateList(String id) {
+		System.out.println("[BlogService] getCateList()");
+
+		return cateDao.selectCateList(id);
+	}
+
+	// 카테고리 추가하기
+	public CategoryVo addReturnCate(CategoryVo categoryVo) {
+		System.out.println("[BlogService] addReturnCate()");
+
+		cateDao.insertSelectKey(categoryVo);
+
+		return cateDao.selectOne(categoryVo.getCateNo());
+	}
+
+	// 카테고리 삭제하기
+	public int removeCate(int cateNo) {
+		System.out.println("[BlogService] addReturnCate()");
+
+		return cateDao.deleteCate(cateNo);
+	}
+
+	// 글 작성하기
+	public int writePost(PostVo postVo) {
+		System.out.println("[BlogService] writePost()");
+
+		return postDao.insertPost(postVo);
 	}
 }

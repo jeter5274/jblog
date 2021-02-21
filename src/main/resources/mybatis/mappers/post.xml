@@ -4,7 +4,7 @@
 
 <mapper namespace="post">
 
-	<!-- id값으로 유저정보 1개 가져오기 : 중복체크 (selectById) / 블로그 정보 불러오기 -->
+	<!-- 글 등록 -->
 	<insert id="insertPost" parameterType="com.javaex.vo.PostVo">
 		<![CDATA[
 			insert into post
@@ -23,11 +23,23 @@
 			select  postNo,
         			cateNo,
         			postTitle,
-        			postContent,
         			to_char(regDate, 'YYYY/MM/DD') as regDate
 			from post
 			where cateNo = #{no}
 			order by postNo desc
+		]]>
+	</select>	
+
+	<!-- 글 리스트 -->
+	<select id="selectPost" parameterType="int" resultType="com.javaex.vo.PostVo">
+		<![CDATA[
+			select  postNo,
+        			cateNo,
+        			postTitle,
+        			replace(postContent, chr(10), '<br>') postContent,
+        			to_char(regDate, 'YYYY/MM/DD') as regDate
+			from post
+			where postNo = #{no}
 		]]>
 	</select>	
 

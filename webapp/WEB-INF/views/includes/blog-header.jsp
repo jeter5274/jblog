@@ -3,7 +3,7 @@
 
 
 		<div id="header" class="clearfix">
-			<h1><a href="">${userVo.blogTitle }</a></h1>
+			<h1><a href="${pageContext.request.contextPath}/${userVo.id }/">${userVo.blogTitle }</a></h1>
 			<ul class="clearfix">
 				<c:choose>
 				<c:when test="${empty authUser }">

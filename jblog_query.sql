@@ -159,6 +159,13 @@ from users
 where id = 'admin'
 and password = '1234';
 
+select  us.userNo,
+        			us.id,
+        			bl.blogTitle
+			from users us, blog bl
+			where us.id = bl.id 
+            and us.id = 'jus'
+			and us.password = '1234';
 /*blog table********************************************************************/
 --데이터 삽입
 insert into blog values('admin', '관리자의 블로그입니다.', '/assets/images/spring-logo.jpg');
@@ -203,16 +210,45 @@ select  cateNo,
         regDate
 from category;
 
---계정의 카테고리 리스트 불러오기 (selectCateList)
-select  cateNo,
-        id,
-        cateName,
-        description,
-        regDate
-from category
-where id = 'admin';
+--계정의 포스트 수가 추가된 카테고리 리스트 불러오기,  (selectCateList)
+select  ca.cateNo,
+        ca.id,
+        ca.cateName,
+        ca.description,
+        ca.regDate,
+        nvl (pCnt.cnt, 0) as postCnt
+from category ca left outer join (select cateNo,
+                                  count(cateNo) as cnt
+from post
+group by cateNo) pCnt
+on ca.cateNo = pCnt.cateNo
+where ca.id = 'admin'
+order by cateNo desc;
 
+--cateNo로 카테고리 한개 불러오기
+select  ca.cateNo,
+        ca.id,
+        ca.cateName,
+        ca.description,
+        ca.regDate,
+        nvl (pCnt.cnt, 0) as postCnt
+from category ca, (select cateNo,
+       count(cateNo) as cnt
+from post
+group by cateNo) pCnt
+where ca.cateNo = pCnt.cateNo
+and ca.cateNo = 1;
 
+select cateNo,
+       count(cateNo)
+from post
+group by cateNo;
+
+--cateNo로 삭제
+delete category
+where cateNo = 13;
+
+rollback;
 
 /*post table********************************************************************/
 --테이터 삽입
@@ -233,11 +269,14 @@ from post;
 select  postNo,
         cateNo,
         postTitle,
-        postContent,
+        replace(postContent, chr(10), '<br>') postContent,
         to_char(regDate, 'YYYY/MM/DD') regDate
-from post
+from post;
 where cateNo = 1;
 
+update post
+set cateNo = 16
+where postNo = 12;
 
 
 

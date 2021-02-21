@@ -19,15 +19,61 @@
 	<!-- 카테고리 리스트 불러오기 -->
 	<select id="selectCateList" parameterType="String" resultType="com.javaex.vo.CategoryVo">
 		<![CDATA[
-			select  cateNo,
-        			id,
-        			cateName,
-        			description,
-        			regDate
-			from category
-			where id = #{id}
+			select  ca.cateNo,
+        			ca.id,
+        			ca.cateName,
+        			ca.description,
+        			ca.regDate,
+        			nvl (pCnt.cnt, 0) as postCnt
+			from category ca left outer join (select cateNo,
+                                  					 count(cateNo) as cnt
+											  from post
+											  group by cateNo) pCnt
+			on ca.cateNo = pCnt.cateNo
+			where ca.id = #{id}
 			order by cateNo desc
 		]]>
 	</select>
 	
+	<!-- 카테고리 추가하면서 CateNo값 할당 -->
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.CategoryVo">
+		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">	
+			select seq_category_no.nextval from dual
+		</selectKey> 
+		<![CDATA[
+			insert into category
+			values(#{cateNo},
+				   #{id},
+				   #{cateName},
+				   #{description},
+				   sysdate
+			)
+		]]>
+	</insert>
+	
+	<!-- 1개의 카테고리 정보를 cateNo로 불러옴 -->
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+			select  ca.cateNo,
+        			ca.id,
+        			ca.cateName,
+        			ca.description,
+        			ca.regDate,
+        			nvl (pCnt.cnt, 0) as postCnt
+			from category ca left outer join (select cateNo,
+                                  					 count(cateNo) as cnt
+											  from post
+											  group by cateNo) pCnt
+			on ca.cateNo = pCnt.cateNo
+			where ca.cateNo = #{no}
+		]]>
+	</select>
+	
+	<!-- 카테고리 번호로 카테고리 삭제 -->
+	<delete id="deleteCate" parameterType="int">
+		<![CDATA[
+			delete category
+			where cateNo = #{cateNo}
+		]]>
+	</delete>
 </mapper>

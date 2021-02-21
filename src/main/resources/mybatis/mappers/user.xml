@@ -45,11 +45,13 @@
 	<!-- 로그인 -->
 	<select id="selectByIdNPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
-			select  userNo,
-        			id
-			from users
-			where id = #{id}
-			and password = #{password}
+			select  us.userNo,
+        			us.id,
+        			bl.blogTitle
+			from users us, blog bl
+			where us.id = bl.id 
+            and us.id = #{id}
+			and us.password = #{password}
 		]]>
 	</select>
 	

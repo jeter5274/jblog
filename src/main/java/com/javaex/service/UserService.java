@@ -52,7 +52,6 @@ public class UserService {
 		cateVo.setCateName("미분류");
 		cateVo.setDescription("기본으로 만들어지는 카테고리입니다.");
 		cateVo.setId(userVo.getId());
-		cateVo.setPostCnt(1);
 		
 		cateDao.insertCate(cateVo);
 		

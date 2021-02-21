@@ -13,18 +13,25 @@ public class PostDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
-	//글 등록
+
+	// 글 등록
 	public int insertPost(PostVo postVo) {
 		System.out.println("[PostDao] insertPost()");
-		
-		return sqlSession.insert("post.insertPost",postVo);
+
+		return sqlSession.insert("post.insertPost", postVo);
 	}
-	
-	//글 리스트
-	public List<PostVo> selectPostList(int cateNo){
+
+	// 글 리스트
+	public List<PostVo> selectPostList(int cateNo) {
 		System.out.println("[PostDao] selectPostList()");
-		
-		return sqlSession.selectList("post.selectPostList",cateNo);
+
+		return sqlSession.selectList("post.selectPostList", cateNo);
+	}
+
+	// 글 식별번호로 1개 글 가져오기
+	public PostVo selectPost(int postNo) {
+		System.out.println("[PostDao] selectPost()");
+
+		return sqlSession.selectOne("post.selectPost", postNo);
 	}
 }

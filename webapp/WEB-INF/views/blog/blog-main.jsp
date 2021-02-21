@@ -31,8 +31,8 @@
 						<strong>카테고리</strong>
 					</div>
 					<ul id="cateList" class="text-left">
-						<c:forEach items="${cateList }" var="cateVo">
-							<li><a href="">${cateVo.cateName }</a></li>
+						<c:forEach items="${blogMap.cateList }" var="cateVo">
+							<li><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${cateVo.cateNo }">${cateVo.cateName }</a></li>
 						</c:forEach>
 						
 					</ul>
@@ -43,7 +43,7 @@
 			<div id="post_area">
 				
 				<c:choose>
-					<c:when test="${empty postList}">
+					<c:when test="${empty blogMap.postVo}">
 					
 						<!-- 글이 없는 경우 -->
 						<div id="postBox" class="clearfix">
@@ -58,14 +58,14 @@
 					
 					<c:otherwise>
 						<div id="postBox" class="clearfix">
-							<div id="postTitle" class="text-left"><strong>${postList[0].postTitle }</strong></div>
-							<div id="postDate" class="text-left"><strong>${postList[0].regDate }</strong></div>
+							<div id="postTitle" class="text-left"><strong>${blogMap.postVo.postTitle }</strong></div>
+							<div id="postDate" class="text-left"><strong>${blogMap.postVo.regDate }</strong></div>
 							<div id="postNick">${userVo.userName}(${userVo.id})님</div>
 						</div>
 						<!-- //postBox -->
 					
 						<div id="post" >
-							${postList[0].postContent }
+							${blogMap.postVo.postContent }
 						</div>
 						<!-- //post -->
 					</c:otherwise>
@@ -80,9 +80,9 @@
 							<col style="width: 20%;">
 						</colgroup>
 						
-						<c:forEach items="${postList }" var="postVo">
+						<c:forEach items="${blogMap.postList }" var="postVo">
 							<tr>
-								<td class="text-left"><a href="">${postVo.postTitle }</a></td>
+								<td class="text-left"><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${postVo.cateNo }&postNo=${postVo.postNo }">${postVo.postTitle }</a></td>
 								<td class="text-right">${postVo.regDate }</td>
 							</tr>
 						</c:forEach>				
