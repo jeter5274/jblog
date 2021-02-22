@@ -71,6 +71,10 @@ a:hover {text-decoration: none; color: #000000; }
 .clearfix:before, .clearfix:after {display: block; content: '';line-height: 0;}
 .clearfix:after {clear: both;}
 
+/* font */
+.f-red {color:#ff0000; }
+.f-bold {font-weight : bold; }
+
 
 /**************************************************************************/
 /* 메인사이트 *************************************************************/
@@ -178,7 +182,20 @@ div#footer		{ color:#666 }
 #post_area #postBox #postNick		{width: 100px; float: left; width: 150px; text-align: left;}
 #post_area #post					{padding: 20px 10px 20px 10px; border-bottom: 3px solid #808080; text-align: left;}
 
-
+/* 개인블로그 오른쪽영역(코멘트) */
+#post_area {}
+#post_area #comment {width: 100%; margin: 10px 0px 0px 0px; font-size: 15px;}
+#post_area #comment #cmtInput #BtnSave  {border:1px solid #808080; 
+										 background-color: #DDDDDD;
+										 border-radius: 5px;
+										 padding: 2px 15px 2px 15px;
+										 font-size: 15px;
+										 cursor: pointer;}
+#post_area #comment #cmtInput td {border: 1px solid #808080; }
+#post_area #comment #cmtList {margin: 10px 0px 0px 0px;}
+#post_area #comment #cmtList td {border: 0px; padding: 5px 0px 0px 0px;}
+#post_area #comment table {width: 100%; border-collapse: collapse;}
+#post_area #comment table input {width: 99.5%; font-size: 15px;}
 
 /* 개인블로그 오른쪽영역(글리스트) */
 #post_area {}

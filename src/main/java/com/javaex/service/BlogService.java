@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.CategoryDao;
+import com.javaex.dao.CommentDao;
 import com.javaex.dao.PostDao;
 import com.javaex.dao.UserDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.CommentVo;
 import com.javaex.vo.PostVo;
 import com.javaex.vo.UserVo;
 
@@ -29,6 +31,8 @@ public class BlogService {
 	private CategoryDao cateDao;
 	@Autowired
 	private PostDao postDao;
+	@Autowired
+	private CommentDao cmtDao;
 
 	// 블로그 카테고리 및 글 정보 불러옴
 	public Map<String, Object> getblog(String id, PostVo postVo) {
@@ -136,5 +140,37 @@ public class BlogService {
 		System.out.println("[BlogService] writePost()");
 
 		return postDao.insertPost(postVo);
+	}
+	
+	//코멘트 추가
+	public int addComment(CommentVo cmtVo) {
+		System.out.println("[BlogService] addComment()");
+		
+		return cmtDao.insert(cmtVo);
+	}
+	
+	//코멘트 리스트 가져오기
+	public List<CommentVo> getCmtList(int postNo, int authUserNo){
+		System.out.println("[BlogService] getCmtList()");
+		
+		List<CommentVo> cmtList = cmtDao.selectListByPN(postNo);
+		
+		//로그인한 사람이 코멘트 작성자인지 확인
+		for(int i=0; i<cmtList.size(); i++) {
+			if(cmtList.get(i).getUserNo() == authUserNo) {
+				cmtList.get(i).setDoYouWriter(true);
+			}else {
+				cmtList.get(i).setDoYouWriter(false);
+			}
+		}
+		
+		return cmtList;
+	}
+	
+	//코멘트 삭제하기
+	public int removeCmt(int cmtNo) {
+		System.out.println("[BlogService] removeCmt()");
+		
+		return cmtDao.delete(cmtNo);
 	}
 }

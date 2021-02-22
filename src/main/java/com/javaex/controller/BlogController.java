@@ -33,14 +33,6 @@ public class BlogController {
 						   Model model) {
 		System.out.println("[BlogController] /" + id);
 
-		/*
-		 * Map<String, Object> blogInfo = blogService.getblog(id, postVo);
-		 * 
-		 * model.addAttribute("userVo", blogInfo.get("userVo"));
-		 * model.addAttribute("cateList", blogInfo.get("cateList"));
-		 * model.addAttribute("postList", blogInfo.get("postList"));
-		 * model.addAttribute("postVo", blogInfo.get("postVo"));
-		 */
 		model.addAttribute("userVo", blogService.getUser(id));
 		model.addAttribute("blogMap", blogService.getblog(id, postVo));
 		

@@ -47,6 +47,7 @@
 		<![CDATA[
 			select  us.userNo,
         			us.id,
+        			us.userName,
         			bl.blogTitle
 			from users us, blog bl
 			where us.id = bl.id 

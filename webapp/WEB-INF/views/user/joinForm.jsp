@@ -98,6 +98,60 @@
 	    });
 
 	});
+	
+	$("#joinForm").on("submit", function(){
+		
+		//id 입력 확인
+		
+		if($("#txtId").val() == ""){
+			alert("아이디를 입력해 주세요");
+			return false;
+		}
+		
+		//id중복체크 확인		
+		if($("#tdMsg").text() != "사용할 수 있는 아이디 입니다."){
+			
+			alert("아이디 중복체크를 해주세요");
+			
+			return false;
+		}
+		
+		//패스워드 입력 확인
+		var pwChk = $("#txtPassword").val();
+		
+		if(pwChk.length < 4){
+			
+			if(pwChk.length == 0){
+				alert("패스워드를 입력해 주세요");
+			}else{
+				alert("패스워드를 4글자 이상 입력해 주세요");	
+			}
+			
+			return false;
+		}
+		
+		//이름 입력 확인
+		var nameChk = $("#txtUserName").val();
+		
+		if(nameChk.length < 2){
+			
+			if(nameChk.length == 0){
+				alert("이름을 입력해 주세요");
+			}else{
+				alert("이름을 2글자 이상 입력해 주세요");	
+			}
+			
+			return false;
+		}
+		
+		//약관 동의 확인
+		if(!($("#chkAgree").is(":checked"))){
+			
+			alert("약관에 동의해 주세요");
+			
+			return false;
+		}
+	});
 
 </script>
 

@@ -294,3 +294,15 @@ select  cmtNo,
         cmtContent,
         regDate
 from comments;
+
+--포스트에 달린 코멘트 불러오기
+select  co.cmtNo,
+        co.postNo,
+        co.userNo,
+        co.cmtContent,
+        co.regDate,
+        us.userName
+from comments co, users us
+where co.userNo = us.userNo
+and postNo = 7
+order by cmtNo asc;
