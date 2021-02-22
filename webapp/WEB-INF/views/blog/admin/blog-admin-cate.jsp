@@ -117,7 +117,6 @@
 		console.log("카테고리 추가 버튼 클릭");
 
 		var categoryVo= {
-			id: '${authUser.id}',
 			cateName: $("input[name='name']").val(),
 			description: $("input[name='desc']").val()
 		}

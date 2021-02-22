@@ -42,6 +42,7 @@ public class BlogService {
 
 		// 카테고리 리스트 가져오기
 		List<CategoryVo> cateList = getCateList(id);
+
 		blogMap.put("cateList", cateList);
 
 		// 카테고리의 포스트 리스트 가져오기
@@ -152,9 +153,9 @@ public class BlogService {
 	//코멘트 리스트 가져오기
 	public List<CommentVo> getCmtList(int postNo, int authUserNo){
 		System.out.println("[BlogService] getCmtList()");
-		
+		System.out.println(postNo);
 		List<CommentVo> cmtList = cmtDao.selectListByPN(postNo);
-		
+		System.out.println(cmtList);
 		//로그인한 사람이 코멘트 작성자인지 확인
 		for(int i=0; i<cmtList.size(); i++) {
 			if(cmtList.get(i).getUserNo() == authUserNo) {

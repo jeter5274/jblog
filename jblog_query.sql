@@ -89,6 +89,12 @@ nocache;
 
 insert into post values(seq_post_no.nextval, '1', '등록된 글이 없습니다.', null, sysdate);
 
+select *
+from post;
+
+delete post
+where postNo = 23;
+
 --comments 테이블/시퀀스 생성 및 데이터 삽입
 create table comments(
     cmtNo number,   --식별번호
@@ -300,9 +306,13 @@ select  co.cmtNo,
         co.postNo,
         co.userNo,
         co.cmtContent,
-        co.regDate,
-        us.userName
+        to_char(co.regDate, 'YYYY/MM/DD') regDate,
+        us.userName as writer
 from comments co, users us
 where co.userNo = us.userNo
 and postNo = 7
 order by cmtNo asc;
+
+-- 특정 코멘트 삭제
+delete comments
+where cmtNo = 1;

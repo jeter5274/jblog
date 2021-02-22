@@ -36,8 +36,10 @@ public class ApiBlogController {
 	//카테고리 추가하고 추가한 카테고리 정보 불러오기
 	@ResponseBody
 	@RequestMapping(value="/admin-addCate", method= {RequestMethod.GET, RequestMethod.POST})
-	public CategoryVo addCate(@ModelAttribute CategoryVo categoryVo){
+	public CategoryVo addCate(@ModelAttribute CategoryVo categoryVo, HttpSession session){
 		System.out.println("[ApiBlogController] /admin-addCate");
+		
+		categoryVo.setId(((UserVo)session.getAttribute("authUser")).getId());
 		
 		CategoryVo addCate = blogService.addReturnCate(categoryVo);
 		System.out.println(addCate);

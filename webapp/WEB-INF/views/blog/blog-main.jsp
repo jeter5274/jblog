@@ -47,7 +47,7 @@
 					<c:when test="${empty blogMap.postVo}">
 
 						<!-- 글이 없는 경우 -->
-						<div id="postBox" class="clearfix">
+						<div id="postBox" class="clearfix" data-postno="-1">
 							<div id="postTitle" class="text-left">
 								<strong>등록된 글이 없습니다.</strong>
 							</div>
@@ -61,7 +61,7 @@
 					</c:when>
 
 					<c:otherwise>
-						<div id="postBox" class="clearfix">
+						<div id="postBox" class="clearfix" data-postno="${blogMap.postVo.postNo }">
 							<div id="postTitle" class="text-left">
 								<strong>${blogMap.postVo.postTitle }</strong>
 							</div>
@@ -154,7 +154,7 @@
 	$("docment").ready(function(){
 		console.log("ready");
 		
-		var postNo = ${blogMap.postVo.postNo};
+		var postNo = $("#postBox").data("postno");
 		
 		$.ajax({
 	
@@ -185,7 +185,7 @@
 	$("#BtnSave").on("click", function() {
 		console.log("코멘트 저장 버튼 클릭");
 
-		var postNo = ${blogMap.postVo.postNo};
+		var postNo = $("#postBox").data("postno");
 		var userNo = $(this).data("userno");
 		var cmtContent = $("#textCmt").val();
 
