@@ -131,8 +131,32 @@
 						</c:forEach>
 
 					</table>
+					
 				</div>
 				<!-- //list -->
+				
+				<div id="postPaging">
+					<ul>
+						<c:if test="${blogMap.pageMap.prev == true }">
+							<li><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${blogMap.postVo.cateNo }&postNo=${blogMap.postVo.postNo }&crtPage=${blogMap.pageMap.startPageNo-1 }">◀</a></li>
+						</c:if>
+						
+						<c:forEach begin="${blogMap.pageMap.startPageNo }" end="${blogMap.pageMap.endPageNo }" var="page" step="1">
+							<c:choose>
+								<c:when test="${(empty param.crtPage && page==1) || param.crtPage == page}">
+									<li class="active"><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${blogMap.postVo.cateNo }&postNo=${blogMap.postVo.postNo }&crtPage=${page }">${page }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${blogMap.postVo.cateNo }&postNo=${blogMap.postVo.postNo }&crtPage=${page }">${page }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${blogMap.pageMap.next == true }">
+							<li><a href="${pageContext.request.contextPath }/${userVo.id}?cateNo=${blogMap.postVo.cateNo }&postNo=${blogMap.postVo.postNo }&crtPage=${blogMap.pageMap.endPageNo+1 }">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
+				
 			</div>
 			<!-- //post_area -->
 

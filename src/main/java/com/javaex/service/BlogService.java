@@ -17,6 +17,7 @@ import com.javaex.dao.CategoryDao;
 import com.javaex.dao.CommentDao;
 import com.javaex.dao.PostDao;
 import com.javaex.dao.UserDao;
+import com.javaex.util.PagingUtil;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.CommentVo;
 import com.javaex.vo.PostVo;
@@ -35,7 +36,7 @@ public class BlogService {
 	private CommentDao cmtDao;
 
 	// 블로그 카테고리 및 글 정보 불러옴
-	public Map<String, Object> getblog(String id, PostVo postVo) {
+	public Map<String, Object> getblog(String id, PostVo postVo, int crtPage) {
 		System.out.println("[BlogService] getblog()");
 
 		Map<String, Object> blogMap = new HashMap<String, Object>();
@@ -52,7 +53,24 @@ public class BlogService {
 			cateNo = cateList.get(0).getCateNo();
 		}
 		
-		List<PostVo> postList = postDao.selectPostList(cateNo);
+		//페이징 정보 생성
+		int totalPostCnt = 0;
+		
+		for(int i=0; i<cateList.size(); i++) {
+			if(cateList.get(i).getCateNo() == cateNo) {
+				totalPostCnt = cateList.get(i).getPostCnt();
+			}
+		}
+		
+		Map<String, Object> pageMap = PagingUtil.setPaging(crtPage, 5, 5, totalPostCnt);
+		blogMap.put("pageMap", pageMap);
+
+		Map<String, Object> pageListMap = new HashMap<String, Object>();
+		pageListMap.put("cateNo", cateNo);
+		pageListMap.put("startPostNo", pageMap.get("startPostNo"));
+		pageListMap.put("endPostNo", pageMap.get("endPostNo"));
+						
+		List<PostVo> postList = postDao.selectPostList(pageListMap);
 		blogMap.put("postList", postList);
 
 		if(postList.size() != 0) {	//글이 없지 않다면
@@ -65,7 +83,7 @@ public class BlogService {
 			
 			blogMap.put("postVo", postDao.selectPost(postNo));
 		}
-
+		
 		return blogMap;
 	}
 
@@ -139,7 +157,7 @@ public class BlogService {
 	// 글 작성하기
 	public int writePost(PostVo postVo) {
 		System.out.println("[BlogService] writePost()");
-
+		
 		return postDao.insertPost(postVo);
 	}
 	

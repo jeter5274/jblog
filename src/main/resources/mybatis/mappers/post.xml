@@ -18,15 +18,27 @@
 	</insert>
 	
 	<!-- 글 리스트 -->
-	<select id="selectPostList" parameterType="int" resultType="com.javaex.vo.PostVo">
+	<select id="selectPostList" parameterType="Map" resultType="com.javaex.vo.PostVo">
 		<![CDATA[
-			select  postNo,
-        			cateNo,
-        			postTitle,
-        			to_char(regDate, 'YYYY/MM/DD') as regDate
-			from post
-			where cateNo = #{no}
-			order by postNo desc
+			select  r.rn,
+			        r.postNo,
+			        r.cateNo,
+			        r.postTitle,
+			        r.regDate
+			from(select rownum rn,
+			            o.postNo,
+			            o.cateNo,
+			            o.postTitle,
+			            o.regDate
+			     from(select postNo,
+			                 cateNo,
+			                 postTitle,
+			                 to_char(regDate, 'YYYY/MM/DD') regDate
+          			  from post
+          			  where cateNo = #{cateNo}
+          			  order by postNo desc) o) r
+			where r.rn >= #{startPostNo}
+			and r.rn <= #{endPostNo}
 		]]>
 	</select>	
 

@@ -204,6 +204,15 @@ div#footer		{ color:#666 }
 #post_area #list table tr {border-bottom: 1px solid #B7B7B7; }
 #post_area #list table td {padding: 6px 5px 6px 5px; }
 
+/* 개인블로그 오른쪽영역(글리스트) 페이징 */
+#post_area #postPaging {
+	margin: 0px auto;
+	width: 300px;
+}
+#post_area #postPaging ul>li{
+	float: left;
+	margin: 0px 8px 0px 8px;
+}
 
 /****************************************************************/
 /* 개인블로그 어드민 ***************************************************/

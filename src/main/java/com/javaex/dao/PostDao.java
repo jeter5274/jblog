@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,10 @@ public class PostDao {
 	}
 
 	// 글 리스트
-	public List<PostVo> selectPostList(int cateNo) {
+	public List<PostVo> selectPostList(Map<String, Object> pageListMap) {
 		System.out.println("[PostDao] selectPostList()");
 
-		return sqlSession.selectList("post.selectPostList", cateNo);
+		return sqlSession.selectList("post.selectPostList", pageListMap);
 	}
 
 	// 글 식별번호로 1개 글 가져오기
@@ -34,4 +35,5 @@ public class PostDao {
 
 		return sqlSession.selectOne("post.selectPost", postNo);
 	}
+
 }

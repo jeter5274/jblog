@@ -277,8 +277,30 @@ select  postNo,
         postTitle,
         replace(postContent, chr(10), '<br>') postContent,
         to_char(regDate, 'YYYY/MM/DD') regDate
-from post;
-where cateNo = 1;
+from post
+where cateNo = 1
+order by postNo desc;
+
+-- 페이징이 적용된 글리스트 가져오기
+select  r.rn,
+        r.postNo,
+        r.cateNo,
+        r.postTitle,
+        r.regDate
+from(select rownum rn,
+            o.postNo,
+            o.cateNo,
+            o.postTitle,
+            o.regDate
+     from(select postNo,
+                 cateNo,
+                 postTitle,
+                 to_char(regDate, 'YYYY/MM/DD') regDate
+          from post
+          where cateNo = 21
+          order by postNo desc) o) r
+where r.rn >= 1
+and r.rn <= 5;
 
 update post
 set cateNo = 16

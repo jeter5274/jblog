@@ -30,11 +30,12 @@ public class BlogController {
 			 			   @RequestParam(value="cateNo", required = false, defaultValue = "-1") int cateNo,
 			 			   @RequestParam(value="postNo", required = false, defaultValue = "-1") int postNo,
 						    */
+						   @RequestParam(value = "crtPage", required = false, defaultValue = "-1") int crtPage, 
 						   Model model) {
 		System.out.println("[BlogController] /" + id);
 
 		model.addAttribute("userVo", blogService.getUser(id));
-		model.addAttribute("blogMap", blogService.getblog(id, postVo));
+		model.addAttribute("blogMap", blogService.getblog(id, postVo, crtPage));
 		
 		return "blog/blog-main";
 	}
@@ -95,7 +96,7 @@ public class BlogController {
 		System.out.println("[BlogController] /" + id + "/admin/write");
 		
 		blogService.writePost(postVo);
-		
+			
 		return "redirect:/" + id + "/admin/writeForm";
 	}
 }

@@ -1,26 +1,26 @@
 --------------------------------------------------------
---  파일이 생성됨 - 일요일-2월-21-2021   
+--  파일이 생성됨 - 화요일-2월-23-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence SEQ_CATEGORY_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_CATEGORY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_CATEGORY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 22 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQ_COMMENTS_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_COMMENTS_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 2 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_COMMENTS_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 6 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQ_POST_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_POST_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 23 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_POST_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 146 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQ_USER_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_USER_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 5 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_USER_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 19 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BLOG
 --------------------------------------------------------
@@ -97,9 +97,10 @@
 REM INSERTING into JBLOG.BLOG
 SET DEFINE OFF;
 Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('admin','관리자의 블로그입니다.','/assets/images/spring-logo.jpg');
-Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('jus','정우성의 블로그입니다.','/upload/1613872786554d290f035-ec36-4d72-9bb7-a72cdc5adc1e.jpg');
+Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('jus','정우성의 블로그입니다.','/upload/16139540118634cff93f1-cf14-4eb7-bd9f-24f55b72294c.jpg');
 Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('sjh','서장훈의 블로그입니다.','/assets/images/spring-logo.jpg');
-Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('yjs','국민MC MC유의 블로그','/upload/161389566889191517fd6-1ec9-4b4b-905c-b8af0d8d9ddf.jpg');
+Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('yjs','국민MC MC유의 블로그','/upload/1613953994981c6fd2ffc-8536-4819-8d49-ce788326270d.jpg');
+Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('jus2','이정재의 블로그입니다.','/assets/images/spring-logo.jpg');
 REM INSERTING into JBLOG.CATEGORY
 SET DEFINE OFF;
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (1,'admin','미분류','기본으로 만들어지는 카테고리 입니다.',to_date('21/02/20','RR/MM/DD'));
@@ -119,9 +120,12 @@ Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (15,'
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (16,'yjs','수상','유재석의 역대 수상 내역',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (17,'yjs','가족','유재석의 가족관계',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (19,'yjs','인간관계','방송관련 주변인 정보',to_date('21/02/21','RR/MM/DD'));
+Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (20,'jus2','미분류','기본으로 만들어지는 카테고리입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (21,'sjh','페이징','페이징을 적용해 보겠습니다.',to_date('21/02/22','RR/MM/DD'));
 REM INSERTING into JBLOG.COMMENTS
 SET DEFINE OFF;
-Insert into JBLOG.COMMENTS (CMTNO,POSTNO,USERNO,CMTCONTENT,REGDATE) values (1,1,1,'내가 쓴글',to_date('21/02/20','RR/MM/DD'));
+Insert into JBLOG.COMMENTS (CMTNO,POSTNO,USERNO,CMTCONTENT,REGDATE) values (4,7,4,'우성씨 유퀴즈 나와줘서 참 고마웠어요',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.COMMENTS (CMTNO,POSTNO,USERNO,CMTCONTENT,REGDATE) values (5,7,3,'아 우성씨 아는형님도 한번 나와줘요~',to_date('21/02/22','RR/MM/DD'));
 REM INSERTING into JBLOG.POST
 SET DEFINE OFF;
 Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (1,1,'등록된 글이 없습니다.',null,to_date('21/02/20','RR/MM/DD'));
@@ -482,73 +486,196 @@ Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (19,
 Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (20,14,'무명시절 탈출',' 1990년대 후반 최고의 인기를 구가했던 토크쇼인 《서세원 쇼》였다. 《서세원 쇼》에서 가장 인기 있는 코너였던 ''토크박스''에서 유재석은 자신의 재밌었던 경험담을 무명시절부터 꾸준히 다져온 그만의 재치와 입담으로 맛깔스럽게 풀며, ''유재석''이라는 자신의 이름을 대중들에게 점차 각인시키게 됐다. 《''슈퍼TV 일요일은 즐거워》 - 출발 드림팀''에서 자주 망가지는 모습과 어이가 없는 결과로 웃음을 유발하였고, 이 시기에 번지점프했던 장면 역시 토크의 소재였다. 《자유선언! 오늘은 토요일 - 60년을 이어라》에서 메뚜기 탈을 쓰면서 진행을 하는 바람에 지금까지 부르고 있는 메뚜기라는 별명이 이때 생겨났다.[4]《자유선언! 오늘은 토요일 - 잠을 잊은 그대》에게 에서는 본래의 취지였던 도서관이 문을 닫을 때까지 마지막으로 나오는 학생을 만나서 선물을 주기보다는 개그맨 남희석의 매니저였던 김종석과의 퀴즈 배틀이 더 화제가 되었다. 또한 MBC에서 방송했던 ''박상원의 아름다운TV 얼굴''에 상의를 탈의한 장면과 ''슈퍼TV 일요일은 즐거워 - MC대격돌 공포의 쿵쿵따''에서 치마가 풀리는 사고가 일어나 젖꼭지가 남들보다 아래에 있는 것이 밝혀져 이것이 가끔씩 예능에서 개그의 소재로 사용되었고, 이후 무한도전 WM7편에서 ''저쪼아래''라는 별칭으로 알려지기도 했다.',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (21,14,'첫 메인MC 발탁',' MBC 《목표달성! 토요일》 - 《스타 서바이벌 동거동락》이다. 《스타 서바이벌 동거동락》은 인기 스타들을 한 방에 몰아넣고 하룻밤을 지새게 하며 진행했던 초유의 프로그램이며, 이러한 방식은 떼거리로 연예인들이 팀을 이뤄 미션을 이행하고, 볼거리를 만들어 내는 , ''X맨(엑스맨)'', ''무한도전'', ''런닝맨'' 등과 같은 이후 버라이어티 포맷의 원조로 꼽을 수 있다. 이 프로그램이 기획된 2000년 당시 유재석은 현재와 같은 명성이 있다기보다는 예능계에서 재능을 인정받고 점차 인지도가 있던 정도에 지나지 않았다. 그럼에도 불구하고 당시에 유재석이 전격적으로 공중파 예능 프로그램의 메인 MC로서 발탁될 수 있었던 이유는 바로 배우 최진실이 강력 추천한 덕분이었다. 《스타 서바이벌 동거동락》을 기획할 당시 담당 PD가 MC를 누구로 해야 할지 고민하던 도중에, 최진실로부터 ''메뚜기(유재석의 별명)라는 개그맨이 있는데, 너무 재밌다며 새로 하는 프로그램이 있으면 한번 MC로 기용 해보라''는 강력 추천을 받았던 것이다.[5][6] 당시 《목표달성! 토요일》은 유재석이 진행하는 《스타 서바이벌 동거동락》 외에도 《god의 육아일기》, 《악동클럽》 등의 타 코너들 또한 엄청난 인기를 얻게 되면서 명실상부 ''2000년-2001년 겨울 시즌'' 최고의 예능 프로그램으로 기록됐으며, 《스타 서바이벌 동거동락》의 경우 출연진들의 성향을 배려하는 한편, 적절한 타이밍에 망가져 주면서 분위기를 자연스럽게 살리는 유재석만의 스타일인 ''배려형 MC'' 캐릭터를 마음껏 발산한 첫 프로그램이었다. 또한 이로 인해 2000년 MBC 방송연예대상 MC 부문 특별상을 받았다.',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (22,14,'이후 우리가 아는 유재석','MBC에서 맡은 《느낌표!》의 〈책책책, 책을 읽읍시다!〉로 2003년 MBC 방송연예대상 쇼버라이어티 부문 최우수상을 거머줬다. 특히 이후에 《슈퍼 TV 일요일은 즐거워》 - 〈MC대격돌: 공포의 쿵쿵따〉로서 누구보다 웃기는 남자로 인정받고, 그때 함께 참여했던 강호동, 이휘재 등은 이후에도 예능에서 높은 활약을 펼쳐, 이 프로그램이 얼마나 가치 있었는지를 간접적으로 입증하고 있다. 이후 쿵쿵따의 인기가 한창일 무렵 이휘재, 김한석, 송은이, 홍록기, 정준하 등과 정통 세트형 코미디 프로그램인 코미디타운을 SBS에서 진행했으나 실패하고, 이후 〈MC 대격돌: 운명의 바퀴/위험한 초대〉로 복귀하였다. 《해피투게더》, 《진실게임》등의 MC를 맡으면서 능력을 인정받게 되고, SBS의 예능 프로그램인 《실제상황 토요일 - X맨》의 메인 MC를 맡고, 이 프로그램의 인기로 국민 MC라는 별명을 얻게 된다. 또한 MBC의 토크쇼 프로그램인 《놀러와》에 배우 김원희와 함께 공동 MC로 투입되어 본격적인 예능계의 별로 떠오르기 시작했다. 하지만 이외의 유재석이 MC를 맡은 몇몇 프로그램들은 큰 빛을 받지 못하고 폐지됐다. 2005년 유재석은 "평균보다 모자란 남자들의 유쾌한 도전"이라는 컨텐츠에 대한 애정이 깊었고, 이전에 출연한 바보 드림팀이라고 비난받았던 KBS에서 방송된 《천하제일 외인구단》, SBS에서 방송된 《유재석과 감개무량》, 이름과 출연진만 다르고 같은 포맷의 프로그램을 계속 진행하다 MBC 《토요일》의 코너 〈무모한 도전〉을 맡게 됐는데, 초창기엔 고전을 면치 못했다. 당시 인포테인먼트 프로그램인 《스펀지》와의 경쟁 때문이었는데, 《강력추천 토요일》의 〈무한도전 - 퀴즈의 달인〉으로 프로그램 포맷이 변경이 되면서 프로그램의 인지도가 높아지고, 이에 힘입어 2006년 5월 6일부터는 《무한도전》이라는 독립 프로그램으로 편성되면서 대한민국 예능 프로그램의 새로운 경향을 제시하게 된다. 그 후 《해피투게더 시즌3》, 《패밀리가 떴다》에 출연하며 대한민국 예능계에서의 최고의 MC로서 입지를 굳혔다. 1년 8개월 동안의 방영을 끝으로《패밀리가 떴다》가 막을 내린 후, 2010년 유재석은 《런닝맨》으로 SBS 예능 프로그램에 메인 MC로 복귀했다. 그 후, 4년 만에 KBS2에서 나는 남자다라는 프로그램을 새로 시작하고, 시즌제로 운영하다 20회로 막을 내렸다. 그리고 2015년 8월에는 JTBC에 들어가서 새로운 파일럿 프로그램에 메인 MC를 맡고 있으며, 《동상이몽, 괜찮아 괜찮아》에서 김구라와 함께 메인 MC를 맡았다. 또한, 《런닝맨》의 인기도가 상승함에 따라 해외 인지도도 상승하였다. 2020년 7월, 《런닝맨》이 10주년을 맞이하게 되면서 대한민국 방송인 역사상 최초로 지상파 방송 3사 모두 20년 이상 활동하게 되면서 이들 방송사의 예능 프로그램을 10년 이상 진행하게 되는 기록을 보유하게 되었다.',to_date('21/02/21','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (24,21,'1번째 글입니다.','1번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (25,21,'2번째 글입니다.','2번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (26,21,'3번째 글입니다.','3번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (27,21,'4번째 글입니다.','4번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (28,21,'5번째 글입니다.','5번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (29,21,'6번째 글입니다.','6번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (30,21,'7번째 글입니다.','7번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (31,21,'8번째 글입니다.','8번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (32,21,'9번째 글입니다.','9번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (33,21,'10번째 글입니다.','10번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (34,21,'11번째 글입니다.','11번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (35,21,'12번째 글입니다.','12번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (36,21,'13번째 글입니다.','13번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (37,21,'14번째 글입니다.','14번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (38,21,'15번째 글입니다.','15번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (39,21,'16번째 글입니다.','16번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (40,21,'17번째 글입니다.','17번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (41,21,'18번째 글입니다.','18번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (42,21,'19번째 글입니다.','19번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (43,21,'20번째 글입니다.','20번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (44,21,'21번째 글입니다.','21번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (45,21,'22번째 글입니다.','22번째 글 내용 입니다.',to_date('21/02/22','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (46,21,'23 번 글입니다.','23 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (47,21,'24 번 글입니다.','24 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (48,21,'25 번 글입니다.','25 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (49,21,'26 번 글입니다.','26 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (50,21,'27 번 글입니다.','27 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (51,21,'28 번 글입니다.','28 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (52,21,'29 번 글입니다.','29 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (53,21,'30 번 글입니다.','30 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (54,21,'31 번 글입니다.','31 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (55,21,'32 번 글입니다.','32 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (56,21,'33 번 글입니다.','33 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (57,21,'34 번 글입니다.','34 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (58,21,'35 번 글입니다.','35 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (59,21,'36 번 글입니다.','36 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (60,21,'37 번 글입니다.','37 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (61,21,'38 번 글입니다.','38 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (62,21,'39 번 글입니다.','39 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (63,21,'40 번 글입니다.','40 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (64,21,'41 번 글입니다.','41 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (65,21,'42 번 글입니다.','42 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (66,21,'43 번 글입니다.','43 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (67,21,'44 번 글입니다.','44 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (68,21,'45 번 글입니다.','45 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (69,21,'46 번 글입니다.','46 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (70,21,'47 번 글입니다.','47 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (71,21,'48 번 글입니다.','48 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (72,21,'49 번 글입니다.','49 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (73,21,'50 번 글입니다.','50 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (74,21,'51 번 글입니다.','51 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (75,21,'52 번 글입니다.','52 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (76,21,'53 번 글입니다.','53 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (77,21,'54 번 글입니다.','54 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (78,21,'55 번 글입니다.','55 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (79,21,'56 번 글입니다.','56 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (80,21,'57 번 글입니다.','57 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (81,21,'58 번 글입니다.','58 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (82,21,'59 번 글입니다.','59 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (83,21,'60 번 글입니다.','60 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (84,21,'61 번 글입니다.','61 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (85,21,'62 번 글입니다.','62 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (86,21,'63 번 글입니다.','63 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (87,21,'64 번 글입니다.','64 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (88,21,'65 번 글입니다.','65 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (89,21,'66 번 글입니다.','66 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (90,21,'67 번 글입니다.','67 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (91,21,'68 번 글입니다.','68 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (92,21,'69 번 글입니다.','69 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (93,21,'70 번 글입니다.','70 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (94,21,'71 번 글입니다.','71 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (95,21,'72 번 글입니다.','72 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (96,21,'73 번 글입니다.','73 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (97,21,'74 번 글입니다.','74 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (98,21,'75 번 글입니다.','75 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (99,21,'76 번 글입니다.','76 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (100,21,'77 번 글입니다.','77 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (101,21,'78 번 글입니다.','78 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (102,21,'79 번 글입니다.','79 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (103,21,'80 번 글입니다.','80 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (104,21,'81 번 글입니다.','81 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (105,21,'82 번 글입니다.','82 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (106,21,'83 번 글입니다.','83 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (107,21,'84 번 글입니다.','84 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (108,21,'85 번 글입니다.','85 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (109,21,'86 번 글입니다.','86 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (110,21,'87 번 글입니다.','87 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (111,21,'88 번 글입니다.','88 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (112,21,'89 번 글입니다.','89 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (113,21,'90 번 글입니다.','90 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (114,21,'91 번 글입니다.','91 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (115,21,'92 번 글입니다.','92 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (116,21,'93 번 글입니다.','93 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (117,21,'94 번 글입니다.','94 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (118,21,'95 번 글입니다.','95 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (119,21,'96 번 글입니다.','96 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (120,21,'97 번 글입니다.','97 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (121,21,'98 번 글입니다.','98 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (122,21,'99 번 글입니다.','99 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (123,21,'100 번 글입니다.','100 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (124,21,'101 번 글입니다.','101 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (125,21,'102 번 글입니다.','102 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (126,21,'103 번 글입니다.','103 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (127,21,'104 번 글입니다.','104 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (128,21,'105 번 글입니다.','105 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (129,21,'106 번 글입니다.','106 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (130,21,'107 번 글입니다.','107 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (131,21,'108 번 글입니다.','108 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (132,21,'109 번 글입니다.','109 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (133,21,'110 번 글입니다.','110 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (134,21,'111 번 글입니다.','111 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (135,21,'112 번 글입니다.','112 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (136,21,'113 번 글입니다.','113 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (137,21,'114 번 글입니다.','114 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (138,21,'115 번 글입니다.','115 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (139,21,'116 번 글입니다.','116 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (140,21,'117 번 글입니다.','117 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (141,21,'118 번 글입니다.','118 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (142,21,'119 번 글입니다.','119 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (143,21,'120 번 글입니다.','120 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (144,21,'121 번 글입니다.','121 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
+Insert into JBLOG.POST (POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE) values (145,21,'122 번 글입니다.','122 번 글 내용입니다.',to_date('21/02/23','RR/MM/DD'));
 REM INSERTING into JBLOG.USERS
 SET DEFINE OFF;
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (1,'admin','관리자','1234',to_date('21/02/20','RR/MM/DD'));
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (2,'jus','정우성','1234',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (3,'sjh','서장훈','1234',to_date('21/02/21','RR/MM/DD'));
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (4,'yjs','유재석','1234',to_date('21/02/21','RR/MM/DD'));
+Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (18,'jus2','이정재','1234',to_date('21/02/22','RR/MM/DD'));
 --------------------------------------------------------
 --  Constraints for Table COMMENTS
 --------------------------------------------------------
 
+  ALTER TABLE "JBLOG"."COMMENTS" MODIFY ("CMTCONTENT" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."COMMENTS" MODIFY ("REGDATE" NOT NULL ENABLE);
   ALTER TABLE "JBLOG"."COMMENTS" ADD PRIMARY KEY ("CMTNO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "JBLOG"."COMMENTS" MODIFY ("REGDATE" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."COMMENTS" MODIFY ("CMTCONTENT" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table CATEGORY
 --------------------------------------------------------
 
+  ALTER TABLE "JBLOG"."CATEGORY" MODIFY ("CATENAME" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."CATEGORY" MODIFY ("REGDATE" NOT NULL ENABLE);
   ALTER TABLE "JBLOG"."CATEGORY" ADD PRIMARY KEY ("CATENO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "JBLOG"."CATEGORY" MODIFY ("REGDATE" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."CATEGORY" MODIFY ("CATENAME" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table POST
 --------------------------------------------------------
 
+  ALTER TABLE "JBLOG"."POST" MODIFY ("POSTTITLE" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."POST" MODIFY ("REGDATE" NOT NULL ENABLE);
   ALTER TABLE "JBLOG"."POST" ADD PRIMARY KEY ("POSTNO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "JBLOG"."POST" MODIFY ("REGDATE" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."POST" MODIFY ("POSTTITLE" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table USERS
 --------------------------------------------------------
 
-  ALTER TABLE "JBLOG"."USERS" ADD UNIQUE ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "JBLOG"."USERS" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."USERS" MODIFY ("USERNAME" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."USERS" MODIFY ("PASSWORD" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."USERS" MODIFY ("JOINDATE" NOT NULL ENABLE);
   ALTER TABLE "JBLOG"."USERS" ADD PRIMARY KEY ("USERNO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "JBLOG"."USERS" MODIFY ("JOINDATE" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."USERS" MODIFY ("PASSWORD" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."USERS" MODIFY ("USERNAME" NOT NULL ENABLE);
-  ALTER TABLE "JBLOG"."USERS" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "JBLOG"."USERS" ADD UNIQUE ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table BLOG
 --------------------------------------------------------
 
+  ALTER TABLE "JBLOG"."BLOG" MODIFY ("BLOGTITLE" NOT NULL ENABLE);
   ALTER TABLE "JBLOG"."BLOG" ADD PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "JBLOG"."BLOG" MODIFY ("BLOGTITLE" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Ref Constraints for Table BLOG
 --------------------------------------------------------
