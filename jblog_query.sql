@@ -297,7 +297,9 @@ from(select rownum rn,
                  postTitle,
                  to_char(regDate, 'YYYY/MM/DD') regDate
           from post
+          
           where cateNo = 21
+          
           order by postNo desc) o) r
 where r.rn >= 1
 and r.rn <= 5;
@@ -306,7 +308,29 @@ update post
 set cateNo = 16
 where postNo = 12;
 
-
+-- 페이징이 적용된 글리스트 가져오기
+select  r.rn,
+        r.postNo,
+        r.cateNo,
+        r.postTitle,
+        r.regDate
+from(select rownum rn,
+            o.postNo,
+            o.cateNo,
+            o.postTitle,
+            o.regDate
+     from(select postNo,
+                 cateNo,
+                 postTitle,
+                 to_char(regDate, 'YYYY/MM/DD') regDate
+          from post
+    
+          where postTitle like '%다%'
+          or postContent like '%다%'
+          
+          order by postNo desc) o) r;
+where r.rn >= 1
+and r.rn <= 5;
 
 /*comments table****************************************************************/
 --데이터 삽입
